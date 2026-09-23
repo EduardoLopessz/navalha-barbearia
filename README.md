@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Navalha Barbearia
 
-## Getting Started
+Site de divulgação e agendamento para uma barbearia fictícia, pensado para ser acessado principalmente pelo celular.
 
-First, run the development server:
+## O que tem no site
+
+- Página inicial com serviços, preços, equipe de barbeiros, depoimentos, perguntas frequentes e contato (WhatsApp, telefone, endereço com mapa).
+- Fluxo de agendamento em `/agendar`: escolha de serviço, barbeiro, data e horário disponível, dados do cliente e confirmação enviada pelo WhatsApp.
+- Layout responsivo com prioridade mobile, navegação em formato de ilha flutuante e ajustes para uso real em celular (área segura de notch, sem zoom em inputs, feedback de toque).
+
+## Como o agendamento funciona
+
+Não há banco de dados nesta versão piloto. O formulário monta os horários disponíveis por barbeiro (dias e faixa de horário definidos em `src/lib/data.ts`), guarda uma cópia local no navegador para não sugerir o mesmo horário duas vezes, e ao confirmar abre uma conversa no WhatsApp da barbearia com os detalhes prontos. Para virar um produto real, o próximo passo é trocar esse armazenamento local por um banco de dados (ex: Postgres via Vercel, ou Supabase) e uma rota de API que valide conflitos de horário no servidor.
+
+## Rodando localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js (App Router) + TypeScript + Tailwind CSS v4 + Framer Motion + Phosphor Icons.
 
-## Learn More
+## Personalizando
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Todo o conteúdo (nome da barbearia, endereço, telefone, serviços, preços, barbeiros e perguntas frequentes) está centralizado em [`src/lib/data.ts`](src/lib/data.ts).
