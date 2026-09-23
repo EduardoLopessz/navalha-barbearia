@@ -67,7 +67,7 @@ export function ContactSection() {
               href={`https://wa.me/${business.phoneWhatsapp}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95"
+              className="tap-target flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             >
               <WhatsappLogo size={20} weight="fill" />
               Chamar no WhatsApp

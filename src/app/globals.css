@@ -12,7 +12,7 @@
   --color-gold-strong: #e0b85c;
   --color-cream: #f4efe6;
   --color-muted: #a9a297;
-  --color-wine: #7a3030;
+  --color-danger: #ff6b6b;
   --color-success: #4caf6e;
 }
 
@@ -27,7 +27,7 @@
   --color-gold-strong: var(--color-gold-strong);
   --color-cream: var(--color-cream);
   --color-muted: var(--color-muted);
-  --color-wine: var(--color-wine);
+  --color-danger: var(--color-danger);
   --color-success: var(--color-success);
 
   --font-sans: var(--font-geist-sans);
@@ -71,9 +71,6 @@ a,
   .hover-lift:hover {
     transform: translateY(-2px);
   }
-  .hover-brighten:hover {
-    background-color: var(--color-elevated);
-  }
 }
 
 .heading-gradient {
@@ -103,15 +100,6 @@ a,
 
 .safe-bottom {
   padding-bottom: calc(env(safe-area-inset-bottom, 0px));
-}
-
-@keyframes word-in {
-  from {
-    opacity: 0.28;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .barber-pole {

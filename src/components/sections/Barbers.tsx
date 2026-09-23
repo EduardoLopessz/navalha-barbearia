@@ -25,7 +25,7 @@ export function Barbers() {
                   alt={`Ilustração de ${barber.name}`}
                   width={96}
                   height={96}
-                  className="h-24 w-24 rounded-full border border-border-subtle bg-surface-3"
+                  className="h-24 w-24 rounded-full border border-white/10 bg-surface-3"
                   loading="lazy"
                 />
                 <h3 className="mt-4 text-lg font-semibold text-cream">{barber.name}</h3>

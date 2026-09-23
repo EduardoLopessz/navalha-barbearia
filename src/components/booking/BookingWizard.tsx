@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -43,6 +43,12 @@ export function BookingWizard() {
   const [confirmed, setConfirmed] = useState<Booking | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const serviceFieldsetRef = useRef<HTMLFieldSetElement>(null);
+  const barberFieldsetRef = useRef<HTMLFieldSetElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+
   const service = services.find((s) => s.id === serviceId);
   const barber = barbers.find((b) => b.id === barberId);
 
@@ -69,6 +75,11 @@ export function BookingWizard() {
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
+      if (nextErrors.service) serviceFieldsetRef.current?.focus();
+      else if (nextErrors.barber) barberFieldsetRef.current?.focus();
+      else if (nextErrors.date) dateRef.current?.focus();
+      else if (nextErrors.name) nameRef.current?.focus();
+      else if (nextErrors.phone) phoneRef.current?.focus();
       return;
     }
     setErrors({});
@@ -205,9 +216,10 @@ export function BookingWizard() {
       <div className="flex items-center gap-3">
         <button
           type="button"
-          onClick={step === 1 ? undefined : goBack}
+          onClick={goBack}
+          disabled={step === 1}
           className={cn(
-            "tap-target flex h-9 w-9 items-center justify-center rounded-full border border-border-subtle text-cream",
+            "tap-target flex h-9 w-9 items-center justify-center rounded-full border border-border-subtle text-cream disabled:pointer-events-none",
             step === 1 && "invisible"
           )}
           aria-label="Voltar"
@@ -223,7 +235,12 @@ export function BookingWizard() {
 
       <div className="mt-8">
         {step === 1 && (
-          <fieldset className="flex flex-col gap-3">
+          <fieldset
+            ref={serviceFieldsetRef}
+            tabIndex={-1}
+            aria-describedby={errors.service ? "service-error" : undefined}
+            className="flex flex-col gap-3 outline-none"
+          >
             <legend className="mb-2 text-sm font-semibold text-cream">
               Qual serviço você quer marcar?
             </legend>
@@ -257,12 +274,21 @@ export function BookingWizard() {
                 </p>
               </label>
             ))}
-            {errors.service && <p className="text-sm text-wine">{errors.service}</p>}
+            {errors.service && (
+              <p id="service-error" role="alert" className="text-sm text-danger">
+                {errors.service}
+              </p>
+            )}
           </fieldset>
         )}
 
         {step === 2 && (
-          <fieldset className="flex flex-col gap-3">
+          <fieldset
+            ref={barberFieldsetRef}
+            tabIndex={-1}
+            aria-describedby={errors.barber ? "barber-error" : undefined}
+            className="flex flex-col gap-3 outline-none"
+          >
             <legend className="mb-2 text-sm font-semibold text-cream">
               Com qual barbeiro?
             </legend>
@@ -295,7 +321,7 @@ export function BookingWizard() {
                   alt=""
                   width={48}
                   height={48}
-                  className="h-12 w-12 shrink-0 rounded-full border border-border-subtle bg-surface-3"
+                  className="h-12 w-12 shrink-0 rounded-full border border-white/10 bg-surface-3"
                 />
                 <div>
                   <p className="text-sm font-semibold text-cream">{b.name}</p>
@@ -303,7 +329,11 @@ export function BookingWizard() {
                 </div>
               </label>
             ))}
-            {errors.barber && <p className="text-sm text-wine">{errors.barber}</p>}
+            {errors.barber && (
+              <p id="barber-error" role="alert" className="text-sm text-danger">
+                {errors.barber}
+              </p>
+            )}
           </fieldset>
         )}
 
@@ -314,6 +344,7 @@ export function BookingWizard() {
                 Escolha a data
               </label>
               <input
+                ref={dateRef}
                 id="date"
                 type="date"
                 min={todayISO()}
@@ -323,9 +354,15 @@ export function BookingWizard() {
                   setTime("");
                   setErrors((prev) => ({ ...prev, date: "" }));
                 }}
+                aria-invalid={Boolean(errors.date)}
+                aria-describedby={errors.date ? "date-error" : undefined}
                 className="tap-target w-full rounded-xl border border-border-subtle bg-surface-2 px-4 py-3 text-cream [color-scheme:dark]"
               />
-              {errors.date && <p className="mt-2 text-sm text-wine">{errors.date}</p>}
+              {errors.date && (
+                <p id="date-error" role="alert" className="mt-2 text-sm text-danger">
+                  {errors.date}
+                </p>
+              )}
             </div>
 
             {date && (
@@ -359,7 +396,11 @@ export function BookingWizard() {
                     ))}
                   </div>
                 )}
-                {errors.time && <p className="mt-2 text-sm text-wine">{errors.time}</p>}
+                {errors.time && (
+                  <p id="time-error" role="alert" className="mt-2 text-sm text-danger">
+                    {errors.time}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -372,6 +413,7 @@ export function BookingWizard() {
                 Nome completo
               </label>
               <input
+                ref={nameRef}
                 id="name"
                 type="text"
                 value={name}
@@ -381,9 +423,15 @@ export function BookingWizard() {
                 }}
                 autoComplete="name"
                 placeholder="Seu nome"
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "name-error" : undefined}
                 className="tap-target w-full rounded-xl border border-border-subtle bg-surface-2 px-4 py-3 text-cream placeholder:text-muted"
               />
-              {errors.name && <p className="mt-2 text-sm text-wine">{errors.name}</p>}
+              {errors.name && (
+                <p id="name-error" role="alert" className="mt-2 text-sm text-danger">
+                  {errors.name}
+                </p>
+              )}
             </div>
 
             <div>
@@ -391,6 +439,7 @@ export function BookingWizard() {
                 Telefone com DDD
               </label>
               <input
+                ref={phoneRef}
                 id="phone"
                 type="tel"
                 inputMode="tel"
@@ -401,9 +450,15 @@ export function BookingWizard() {
                 }}
                 autoComplete="tel"
                 placeholder="(11) 91234-5678"
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? "phone-error" : undefined}
                 className="tap-target w-full rounded-xl border border-border-subtle bg-surface-2 px-4 py-3 text-cream placeholder:text-muted"
               />
-              {errors.phone && <p className="mt-2 text-sm text-wine">{errors.phone}</p>}
+              {errors.phone && (
+                <p id="phone-error" role="alert" className="mt-2 text-sm text-danger">
+                  {errors.phone}
+                </p>
+              )}
             </div>
 
             <div>
@@ -469,7 +524,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={goNext}
-              className="tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95"
+              className="tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             >
               Continuar
             </button>
@@ -477,7 +532,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={handleConfirm}
-              className="tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95"
+              className="tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             >
               <CalendarCheck size={20} weight="bold" />
               Confirmar pelo WhatsApp

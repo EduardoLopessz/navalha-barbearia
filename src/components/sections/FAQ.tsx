@@ -30,12 +30,14 @@ export function FAQ() {
                     type="button"
                     onClick={() => setOpenId(isOpen ? null : item.id)}
                     aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${item.id}`}
                     className="tap-target flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                   >
                     <span className="text-sm font-semibold text-cream sm:text-base">
                       {item.question}
                     </span>
                     <CaretDown
+                      aria-hidden="true"
                       size={18}
                       className={cn(
                         "shrink-0 text-muted transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
@@ -44,6 +46,7 @@ export function FAQ() {
                     />
                   </button>
                   <div
+                    id={`faq-answer-${item.id}`}
                     className={cn(
                       "grid overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
                       isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"

@@ -16,7 +16,7 @@ export function FinalCTA() {
           </p>
           <Link
             href="/agendar"
-            className="tap-target mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95"
+            className="tap-target mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
           >
             <CalendarCheck size={20} weight="bold" />
             Agendar meu horário
