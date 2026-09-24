@@ -102,6 +102,10 @@ a,
   padding-bottom: calc(env(safe-area-inset-bottom, 0px));
 }
 
+.safe-top {
+  top: calc(1rem + env(safe-area-inset-top, 0px));
+}
+
 .barber-pole {
   background-image: repeating-linear-gradient(
     45deg,
@@ -127,4 +131,77 @@ a,
   .barber-pole {
     animation: none;
   }
+}
+
+/* Textura de grão sutil para dar acabamento editorial ao fundo escuro. */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Tratamento de cor para as fotos reais, pra unificar a luz entre fotos tiradas em dias diferentes. */
+.photo-treated {
+  filter: contrast(1.08) saturate(1.08) brightness(1.02);
+}
+
+.glass-panel {
+  background: color-mix(in oklab, var(--color-surface-2) 72%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Feixe de luz suave atrás do hero, inspirado no efeito "spotlight" da Aceternity UI. */
+.spotlight {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--color-gold) 55%, transparent), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+@keyframes spotlight-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3%, -4%) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight {
+    animation: spotlight-drift 12s ease-in-out infinite;
+  }
+}
+
+/* Brilho que percorre a borda do botão principal, inspirado no "moving border" da Aceternity UI. */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 40%, color-mix(in oklab, white 55%, transparent) 50%, transparent 60%);
+  transform: translateX(-120%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shine-sweep:hover::after {
+    transform: translateX(120%);
+    transition: transform 900ms var(--ease-fluid);
+  }
+}
+
+.glow-ring {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-gold) 60%, transparent),
+    0 0 24px 0 color-mix(in oklab, var(--color-gold) 35%, transparent);
 }

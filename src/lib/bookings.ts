@@ -61,6 +61,59 @@ export function getAvailableSlots(barber: Barber, dateStr: string): string[] {
   return allSlots.filter((slot) => !taken.has(slot));
 }
 
+export function todayISO() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset();
+  const local = new Date(d.getTime() - offset * 60 * 1000);
+  return local.toISOString().slice(0, 10);
+}
+
+const WEEKDAY_SHORT = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+const MONTH_SHORT = [
+  "jan",
+  "fev",
+  "mar",
+  "abr",
+  "mai",
+  "jun",
+  "jul",
+  "ago",
+  "set",
+  "out",
+  "nov",
+  "dez",
+];
+
+export type DayOption = {
+  iso: string;
+  weekday: string;
+  day: number;
+  month: string;
+  isToday: boolean;
+};
+
+/** Gera os próximos `count` dias a partir de hoje, para a tira de datas do agendamento. */
+export function generateNextDays(count: number): DayOption[] {
+  const start = new Date(`${todayISO()}T00:00:00`);
+  return Array.from({ length: count }, (_, i) => {
+    const date = new Date(start);
+    date.setDate(date.getDate() + i);
+    return {
+      iso: date.toISOString().slice(0, 10),
+      weekday: WEEKDAY_SHORT[date.getDay()],
+      day: date.getDate(),
+      month: MONTH_SHORT[date.getMonth()],
+      isToday: i === 0,
+    };
+  });
+}
+
+export function splitSlotsByPeriod(slots: string[]) {
+  const morning = slots.filter((s) => s < "12:00");
+  const afternoon = slots.filter((s) => s >= "12:00");
+  return { morning, afternoon };
+}
+
 export function buildWhatsappMessage({
   service,
   barber,

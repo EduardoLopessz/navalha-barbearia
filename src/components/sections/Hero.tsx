@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarCheck, ListMagnifyingGlass, Star } from "@phosphor-icons/react/dist/ssr";
+import { motion } from "framer-motion";
+import { CalendarCheck, ListMagnifyingGlass, Star } from "@phosphor-icons/react";
 import { business } from "@/lib/data";
+import { Spotlight } from "@/components/ui/Spotlight";
+
+const EASE_FLUID = [0.32, 0.72, 0, 1] as const;
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-surface pt-32 pb-16 sm:pt-40 sm:pb-24">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-10">
-        <div className="w-full max-w-[680px] text-center lg:text-left">
+    <section className="grain relative overflow-hidden bg-surface pt-32 pb-16 sm:pt-40 sm:pb-24">
+      <Spotlight className="left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 sm:h-[640px] sm:w-[640px]" />
+
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE_FLUID }}
+          className="w-full max-w-[680px] text-center lg:text-left"
+        >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-gold">
             Barbearia em Bairro Alto, Curitiba
           </p>
@@ -22,7 +35,7 @@ export function Hero() {
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
             <Link
               href="/agendar"
-              className="tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96] sm:w-auto"
+              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96] sm:w-auto"
             >
               <CalendarCheck size={20} weight="bold" />
               Agendar meu horário
@@ -49,30 +62,36 @@ export function Hero() {
             <span className="text-cream">{business.rating.toFixed(1)}</span>
             <span>no Google</span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="relative flex w-full max-w-xs items-center justify-center lg:max-w-sm">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASE_FLUID }}
+          className="relative flex w-full max-w-xs items-center justify-center lg:max-w-sm"
+        >
+          <div className="glow-ring relative aspect-[3/4] w-full overflow-hidden rounded-3xl">
             <Image
               src="/images/barao/hero-fade.jpg"
               alt="Barbeiro finalizando um degradê na Barbearia Barão"
               fill
               priority
               sizes="(min-width: 1024px) 384px, 320px"
-              className="object-cover"
+              className="photo-treated object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
           </div>
 
-          <div className="absolute -right-4 top-6 rounded-2xl border border-border-subtle bg-surface-2 px-4 py-3 text-left shadow-lg shadow-black/40">
+          <div className="glass-panel absolute -right-4 top-6 rounded-2xl border border-white/10 px-4 py-3 text-left shadow-lg shadow-black/40">
             <p className="text-xs text-muted">Avaliação</p>
             <p className="text-sm font-semibold text-cream">{business.rating.toFixed(1)} no Google</p>
           </div>
 
-          <div className="absolute -left-6 bottom-8 rounded-2xl border border-border-subtle bg-surface-2 px-4 py-3 text-left shadow-lg shadow-black/40">
+          <div className="glass-panel absolute -left-6 bottom-8 rounded-2xl border border-white/10 px-4 py-3 text-left shadow-lg shadow-black/40">
             <p className="text-xs text-muted">Também temos</p>
             <p className="text-sm font-semibold text-cream">Barão Kids</p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

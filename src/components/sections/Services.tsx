@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { services } from "@/lib/data";
 import type { Service } from "@/types";
 import { formatDuration, formatPrice } from "@/lib/utils";
@@ -37,33 +38,35 @@ export function Services() {
             const Icon = ICONS[service.icon];
             return (
               <Reveal key={service.id}>
-                <div className="hover-lift flex h-full flex-col rounded-2xl border border-border-subtle bg-surface-2 p-6 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 text-gold">
-                    <Icon size={22} weight="bold" />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-cream">
-                    {service.name}
-                  </h3>
-                  <p className="pretty mt-2 flex-1 text-sm text-muted">
-                    {service.description}
-                  </p>
-                  <div className="mt-6 flex items-end justify-between border-t border-border-subtle pt-4">
-                    <div>
-                      <p className="font-mono text-xl font-semibold text-cream">
-                        {formatPrice(service.price)}
-                      </p>
-                      <p className="text-xs text-muted">
-                        {formatDuration(service.durationMinutes)}
-                      </p>
+                <TiltCard className="hover-lift h-full rounded-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                  <div className="flex h-full flex-col rounded-2xl border border-border-subtle bg-surface-2 p-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 text-gold">
+                      <Icon size={22} weight="bold" />
                     </div>
-                    <Link
-                      href={`/agendar?servico=${service.id}`}
-                      className="tap-target text-sm font-semibold text-gold hover:text-gold-strong"
-                    >
-                      Agendar →
-                    </Link>
+                    <h3 className="mt-4 text-lg font-semibold text-cream">
+                      {service.name}
+                    </h3>
+                    <p className="pretty mt-2 flex-1 text-sm text-muted">
+                      {service.description}
+                    </p>
+                    <div className="mt-6 flex items-end justify-between border-t border-border-subtle pt-4">
+                      <div>
+                        <p className="font-mono text-xl font-semibold text-cream">
+                          {formatPrice(service.price)}
+                        </p>
+                        <p className="text-xs text-muted">
+                          {formatDuration(service.durationMinutes)}
+                        </p>
+                      </div>
+                      <Link
+                        href={`/agendar?servico=${service.id}`}
+                        className="tap-target text-sm font-semibold text-gold hover:text-gold-strong"
+                      >
+                        Agendar →
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               </Reveal>
             );
           })}
