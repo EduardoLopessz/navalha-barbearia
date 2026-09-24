@@ -1,31 +1,36 @@
-import type { Barber, FaqItem, Service, Testimonial } from "@/types";
+import type { Barber, FaqItem, Service } from "@/types";
 
 export const business = {
-  name: "Navalha Barbearia",
-  shortName: "Navalha",
-  tagline: "Barba e cabelo tratados como ofício, não como tarefa.",
-  phoneDisplay: "(11) 98421-3376",
-  phoneWhatsapp: "5511984213376",
-  email: "contato@navalhabarbearia.com.br",
-  address: "Rua Fradique Coutinho, 682 — Pinheiros, São Paulo, SP",
-  addressMapsQuery: "Rua Fradique Coutinho, 682, Pinheiros, São Paulo, SP",
-  instagram: "@navalha.barbearia",
-  instagramUrl: "https://instagram.com/navalha.barbearia",
-  rating: 4.9,
-  ratingCount: 312,
+  name: "Barbearia Barão",
+  shortName: "Barão",
+  tagline: "Estilo e sofisticação em cada corte e barba.",
+  phoneDisplay: "(41) 99946-8020",
+  phoneWhatsapp: "5541999468020",
+  email: "contato@barbeariabarao.com.br",
+  address: "Rua José de Oliveira Franco, 576 — Bairro Alto, Curitiba, PR",
+  addressMapsQuery: "Rua José de Oliveira Franco, 576, Bairro Alto, Curitiba, PR",
+  instagram: "@barbeariabarao._",
+  instagramUrl: "https://instagram.com/barbeariabarao._",
+  googleUrl:
+    "https://www.google.com/maps/place/BARBEARIA+BAR%C3%83O+E+BAR%C3%83O+KIDS/@-25.4041065,-49.2105215,17z",
+  rating: 4.8,
+  // Horário estimado a partir do Google Maps (só confirmamos "abre quinta às 9h").
+  // Confirme os dias e horários reais antes de divulgar.
   hours: [
-    { label: "Terça a sexta", value: "9h às 20h" },
-    { label: "Sábado", value: "8h às 18h" },
+    { label: "Terça a sexta", value: "9h às 19h" },
+    { label: "Sábado", value: "9h às 17h" },
     { label: "Domingo e segunda", value: "Fechado" },
   ],
 } as const;
 
+// Preços e durações são estimativas de referência — ainda não confirmados
+// com o preço real praticado na Barbearia Barão.
 export const services: Service[] = [
   {
     id: "corte-classico",
     name: "Corte clássico",
     description: "Tesoura e máquina, com acabamento na navalha ao redor das orelhas e nuca.",
-    price: 55,
+    price: 45,
     durationMinutes: 40,
     icon: "scissors",
   },
@@ -33,7 +38,7 @@ export const services: Service[] = [
     id: "corte-barba",
     name: "Corte + barba",
     description: "Combo completo com toalha quente, óleo e alinhamento da barba na navalha.",
-    price: 85,
+    price: 70,
     durationMinutes: 65,
     icon: "razor",
   },
@@ -41,7 +46,7 @@ export const services: Service[] = [
     id: "barba-terapia",
     name: "Barba terapia",
     description: "Toalha quente, esfoliação, óleo e finalização na navalha. Só a barba.",
-    price: 45,
+    price: 35,
     durationMinutes: 30,
     icon: "towel",
   },
@@ -49,9 +54,17 @@ export const services: Service[] = [
     id: "degrade-navalhado",
     name: "Degradê navalhado",
     description: "Fade baixo, médio ou alto, com contorno fechado na navalha.",
-    price: 60,
+    price: 50,
     durationMinutes: 45,
     icon: "fade",
+  },
+  {
+    id: "corte-infantil",
+    name: "Corte infantil (Barão Kids)",
+    description: "Atendimento pensado para crianças, com paciência e cadeira temática.",
+    price: 40,
+    durationMinutes: 35,
+    icon: "eyebrow",
   },
   {
     id: "sobrancelha",
@@ -59,95 +72,95 @@ export const services: Service[] = [
     description: "Limpeza e alinhamento das sobrancelhas, sem pinça, só navalha.",
     price: 20,
     durationMinutes: 15,
-    icon: "eyebrow",
-  },
-  {
-    id: "pigmentacao-barba",
-    name: "Pigmentação de barba",
-    description: "Cobertura natural para falhas ou fios brancos, com produto próprio para barba.",
-    price: 70,
-    durationMinutes: 50,
     icon: "pigment",
   },
 ];
 
+// Só confirmamos os nomes Matuza (dono) e Richard. O terceiro horário fica
+// como "sem preferência" em vez de inventar o nome de outro colega.
 export const barbers: Barber[] = [
   {
-    id: "renato-aquino",
-    name: "Renato Aquino",
-    role: "Especialista em degradê e barba desenhada",
-    bio: "Doze anos de navalha na mão. Renato é procurado por quem quer um fade fechado e uma barba com linhas bem definidas.",
-    yearsExperience: 12,
-    avatarSeed: "Renato-Aquino-Navalha",
-    instagram: "@renato.corta",
+    id: "matuza",
+    name: "Matuza",
+    role: "Dono e barbeiro",
+    bio: "Cuida de cada detalhe da Barbearia Barão, do primeiro corte ao acabamento na navalha.",
+    yearsExperience: 0,
+    avatarSeed: "Matuza-Barbearia-Barao",
+    instagram: business.instagram,
     workDays: [2, 3, 4, 5, 6],
     startHour: 9,
-    endHour: 20,
+    endHour: 19,
   },
   {
-    id: "diego-salvador",
-    name: "Diego Salvador",
-    role: "Cortes clássicos e navalha",
-    bio: "Formado pela escola tradicional, Diego prefere tesoura a máquina sempre que dá e capricha em cada acabamento.",
-    yearsExperience: 8,
-    avatarSeed: "Diego-Salvador-Navalha",
-    instagram: "@diego.barber",
+    id: "richard",
+    name: "Richard",
+    role: "Barbeiro",
+    bio: "Faz parte da equipe da Barbearia Barão, do corte ao acabamento.",
+    yearsExperience: 0,
+    avatarSeed: "Richard-Barbearia-Barao",
+    instagram: business.instagram,
     workDays: [2, 3, 4, 5, 6],
     startHour: 9,
-    endHour: 20,
+    endHour: 19,
   },
   {
-    id: "bruno-kaique",
-    name: "Bruno Kaique",
-    role: "Fades modernos e coloração masculina",
-    bio: "Bruno acompanha as referências mais recentes e é o mais procurado por quem quer arriscar um corte diferente.",
-    yearsExperience: 6,
-    avatarSeed: "Bruno-Kaique-Navalha",
-    instagram: "@bruno.fade",
+    id: "sem-preferencia",
+    name: "Sem preferência",
+    role: "Qualquer barbeiro disponível",
+    bio: "Não tem barbeiro favorito ainda? A equipe Barão encaixa você com quem estiver livre no horário.",
+    yearsExperience: 0,
+    avatarSeed: "Equipe-Barbearia-Barao",
+    instagram: business.instagram,
     workDays: [2, 3, 4, 5, 6],
-    startHour: 10,
+    startHour: 9,
     endHour: 19,
   },
 ];
 
-export const testimonials: Testimonial[] = [
+export const galleryPhotos = [
   {
-    id: "marcos-tanaka",
-    name: "Marcos Vinícius Tanaka",
-    service: "Degradê navalhado com Renato",
-    quote:
-      "Cheguei sem hora marcada uma vez e o Renato ainda me encaixou. Da vez seguinte já agendei pelo site e foi bem mais rápido.",
-    rating: 5,
+    id: "barba-quente",
+    src: "/images/barao/gallery-barba-quente.jpg",
+    alt: "Barbeiro fazendo a barba de um cliente com toalha quente na Barbearia Barão",
   },
   {
-    id: "felipe-andrade",
-    name: "Felipe Andrade Souza",
-    service: "Barba terapia com Diego",
-    quote:
-      "A toalha quente sozinha já vale a visita. Saio de lá com a barba alinhada e sem aquela vermelhidão de sempre.",
-    rating: 5,
+    id: "detalhe-maquina",
+    src: "/images/barao/gallery-detalhe-maquina.jpg",
+    alt: "Detalhe do acabamento com máquina no corte de cabelo",
   },
   {
-    id: "thiago-ramalho",
-    name: "Thiago Ramalho",
-    service: "Corte + barba com Bruno",
-    quote:
-      "Levei uma referência confusa e o Bruno soube exatamente o que dava pra fazer com o meu tipo de cabelo. Ficou melhor do que eu pedi.",
-    rating: 4,
+    id: "barao-kids",
+    src: "/images/barao/gallery-barao-kids.jpg",
+    alt: "Criança sorrindo durante o corte de cabelo na cadeira do Barão Kids",
   },
-];
+  {
+    id: "espelho",
+    src: "/images/barao/gallery-espelho.jpg",
+    alt: "Barbeiro mostrando o resultado do corte no espelho para o cliente",
+  },
+  {
+    id: "acabamento-navalha",
+    src: "/images/barao/gallery-acabamento-navalha.jpg",
+    alt: "Acabamento na navalha na nuca do cliente, com poste de barbeiro ao fundo",
+  },
+  {
+    id: "kids-carrinho",
+    src: "/images/barao/gallery-kids-carrinho.jpg",
+    alt: "Barbeiro e criança sorrindo na cadeira infantil em formato de carrinho",
+  },
+] as const;
 
 export const faqItems: FaqItem[] = [
   {
     id: "pagamento",
     question: "Preciso pagar para reservar o horário?",
     answer:
-      "Não. O agendamento é gratuito e o pagamento é feito na barbearia, em dinheiro, PIX ou cartão, depois do atendimento.",
+      "Não. O agendamento é gratuito e o pagamento é feito na barbearia, depois do atendimento.",
   },
   {
     id: "remarcar",
     question: "Posso remarcar ou cancelar meu horário?",
-    answer: "Sim, até 3 horas antes do horário marcado, direto pelo WhatsApp.",
+    answer: "Pode, é só avisar com antecedência direto pelo WhatsApp da Barbearia Barão.",
   },
   {
     id: "sem-horario",
@@ -163,17 +176,19 @@ export const faqItems: FaqItem[] = [
   {
     id: "infantil",
     question: "Corte infantil está disponível?",
-    answer: "Sim, atendemos crianças a partir de 5 anos, sem custo adicional na tesoura.",
+    answer:
+      "Sim, esse é o Barão Kids: atendimento pensado para crianças, com cadeira temática e paciência de sobra.",
   },
   {
-    id: "estacionamento",
-    question: "Tem estacionamento perto?",
-    answer: "Sim, o estacionamento da esquina fica a cerca de 40 metros da porta.",
+    id: "levar",
+    question: "Preciso levar alguma coisa?",
+    answer: "Não, só a sua disposição. Toalhas e todo o material do corte já ficam por nossa conta.",
   },
   {
-    id: "produtos",
-    question: "Quais produtos vocês usam?",
-    answer: "Trabalhamos com pomadas e óleos das marcas Malbec Barber e Two Fingers.",
+    id: "protese",
+    question: "Como funciona a prótese capilar?",
+    answer:
+      "A Barbearia Barão também faz avaliação e aplicação de prótese capilar. Fale com a equipe pelo WhatsApp para agendar essa avaliação.",
   },
   {
     id: "trocar-barbeiro",

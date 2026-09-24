@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const EASE_FLUID = [0.32, 0.72, 0, 1] as const;
 
 const TAGLINE =
-  "Barbearia não é sobre pressa. É sobre o tempo certo pra cada corte, cada risco de navalha, cada conversa que fica pra próxima.";
+  "Bem-vindo ao clube. Aqui, cuidado masculino tem tempo, capricho e conversa boa até o último risco de navalha.";
 
 export function TaglineReveal() {
   const words = TAGLINE.split(" ");

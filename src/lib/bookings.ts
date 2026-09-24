@@ -1,7 +1,7 @@
 import type { Barber, Booking, Service } from "@/types";
 import { business } from "@/lib/data";
 
-const STORAGE_KEY = "navalha_bookings";
+const STORAGE_KEY = "barao_bookings";
 
 export function getStoredBookings(): Booking[] {
   if (typeof window === "undefined") return [];

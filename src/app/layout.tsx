@@ -17,20 +17,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://navalha-barbearia.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://barbearia-gml4.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${business.name} — Agende seu horário em Pinheiros, São Paulo`,
+    default: `${business.name} — Agende seu horário em Bairro Alto, Curitiba`,
     template: `%s | ${business.name}`,
   },
   description:
-    "Corte, barba e degradê com hora marcada. Escolha o serviço, o barbeiro e o horário direto pelo celular na Navalha Barbearia, em Pinheiros, São Paulo.",
+    "Corte, barba e degradê com hora marcada. Escolha o serviço, o barbeiro e o horário direto pelo celular na Barbearia Barão, em Bairro Alto, Curitiba.",
   keywords: [
     "barbearia",
-    "barbearia Pinheiros",
-    "corte masculino São Paulo",
+    "barbearia Bairro Alto",
+    "barbearia Curitiba",
+    "corte masculino Curitiba",
     "agendamento barbearia",
     "barba",
   ],

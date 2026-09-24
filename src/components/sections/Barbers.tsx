@@ -10,8 +10,8 @@ export function Barbers() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Nossa equipe"
-          title="Escolha o barbeiro que combina com o seu estilo"
-          description="Três profissionais, três jeitos diferentes de trabalhar. Você pode trocar de barbeiro quando quiser."
+          title="Escolha quem vai cuidar do seu corte"
+          description="Marque com o Matuza, com o Richard, ou deixe em aberto que a equipe encaixa você."
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -31,9 +31,6 @@ export function Barbers() {
                 <h3 className="mt-4 text-lg font-semibold text-cream">{barber.name}</h3>
                 <p className="text-sm text-gold">{barber.role}</p>
                 <p className="pretty mt-2 text-sm text-muted">{barber.bio}</p>
-                <p className="mt-3 text-xs text-muted">
-                  {barber.yearsExperience} anos de experiência
-                </p>
 
                 <div className="mt-4 flex items-center gap-3">
                   <a
@@ -49,7 +46,9 @@ export function Barbers() {
                     href={`/agendar?barbeiro=${barber.id}`}
                     className="tap-target rounded-full bg-surface-3 px-4 py-2 text-sm font-semibold text-cream transition-colors duration-300 hover:bg-elevated"
                   >
-                    Agendar com {barber.name.split(" ")[0]}
+                    {barber.id === "sem-preferencia"
+                      ? "Agendar sem preferência"
+                      : `Agendar com ${barber.name.split(" ")[0]}`}
                   </Link>
                 </div>
               </div>

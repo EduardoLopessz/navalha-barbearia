@@ -11,7 +11,7 @@ const links = [
   { href: "#servicos", label: "Serviços" },
   { href: "#barbeiros", label: "Barbeiros" },
   { href: "#como-funciona", label: "Como funciona" },
-  { href: "#depoimentos", label: "Depoimentos" },
+  { href: "#ambiente", label: "Ambiente" },
   { href: "#faq", label: "Perguntas" },
   { href: "#contato", label: "Contato" },
 ];
