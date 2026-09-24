@@ -3,54 +3,61 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CalendarCheck, ListMagnifyingGlass, Star } from "@phosphor-icons/react";
+import { CalendarCheck, Star } from "@phosphor-icons/react";
 import { business } from "@/lib/data";
-import { Spotlight } from "@/components/ui/Spotlight";
 
 const EASE_FLUID = [0.32, 0.72, 0, 1] as const;
 
 export function Hero() {
   return (
-    <section className="grain relative overflow-hidden bg-surface pt-32 pb-16 sm:pt-40 sm:pb-24">
-      <Spotlight className="left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 sm:h-[640px] sm:w-[640px]" />
+    <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink pb-20 pt-32 sm:pb-28">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/barao/hero-fade.jpg"
+          alt="Barbeiro finalizando um degradê na Barbearia Barão"
+          fill
+          priority
+          sizes="100vw"
+          className="photo-treated object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/10 to-transparent" />
+      </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE_FLUID }}
-          className="w-full max-w-[680px] text-center lg:text-left"
-        >
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-gold">
-            Barbearia em Bairro Alto, Curitiba
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: EASE_FLUID }}
+        className="relative mx-auto w-full max-w-6xl px-4 sm:px-6"
+      >
+        <div className="flex items-center gap-3">
+          <span aria-hidden="true" className="h-px w-8 bg-accent" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            Barbearia masculina · Bairro Alto, Curitiba
           </p>
-          <h1 className="heading-gradient balance text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            Seu corte, no seu horário, sem fila de espera
-          </h1>
-          <p className="pretty mt-4 text-base text-muted sm:text-lg">
-            Escolha o serviço, o barbeiro e o horário direto pelo celular. Você recebe a
-            confirmação na hora, sem precisar ligar.
-          </p>
+        </div>
 
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-            <Link
-              href="/agendar"
-              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96] sm:w-auto"
-            >
-              <CalendarCheck size={20} weight="bold" />
-              Agendar meu horário
-            </Link>
-            <a
-              href="#servicos"
-              className="tap-target flex w-full items-center justify-center gap-2 rounded-full border border-border-subtle px-6 py-3 text-base font-semibold text-cream transition-colors duration-300 hover:bg-surface-3 sm:w-auto"
-            >
-              <ListMagnifyingGlass size={20} />
-              Ver serviços e preços
-            </a>
-          </div>
+        <h1 className="font-serif-display balance mt-4 max-w-2xl text-4xl font-semibold text-cream sm:text-6xl">
+          Seu estilo merece{" "}
+          <span className="font-serif-display italic text-accent">atenção aos detalhes</span>.
+        </h1>
 
-          <div className="mt-8 flex items-center justify-center gap-2 text-sm text-muted lg:justify-start">
-            <div className="flex items-center gap-0.5 text-gold">
+        <p className="pretty mt-5 max-w-md text-base text-cream/80 sm:text-lg">
+          Escolha o serviço, o barbeiro e o horário direto pelo celular. Confirmação na
+          hora, sem precisar ligar.
+        </p>
+
+        <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <Link
+            href="/agendar"
+            className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96] sm:w-auto"
+          >
+            <CalendarCheck size={20} weight="bold" />
+            Agendar meu horário
+          </Link>
+
+          <div className="flex items-center gap-2 text-sm text-cream/80">
+            <div className="flex items-center gap-0.5 text-accent">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
@@ -62,37 +69,25 @@ export function Hero() {
             <span className="text-cream">{business.rating.toFixed(1)}</span>
             <span>no Google</span>
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: EASE_FLUID }}
-          className="relative flex w-full max-w-xs items-center justify-center lg:max-w-sm"
-        >
-          <div className="glow-ring relative aspect-[3/4] w-full overflow-hidden rounded-3xl">
-            <Image
-              src="/images/barao/hero-fade.jpg"
-              alt="Barbeiro finalizando um degradê na Barbearia Barão"
-              fill
-              priority
-              sizes="(min-width: 1024px) 384px, 320px"
-              className="photo-treated object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
-          </div>
-
-          <div className="glass-panel absolute -right-4 top-6 rounded-2xl border border-white/10 px-4 py-3 text-left shadow-lg shadow-black/40">
-            <p className="text-xs text-muted">Avaliação</p>
-            <p className="text-sm font-semibold text-cream">{business.rating.toFixed(1)} no Google</p>
-          </div>
-
-          <div className="glass-panel absolute -left-6 bottom-8 rounded-2xl border border-white/10 px-4 py-3 text-left shadow-lg shadow-black/40">
-            <p className="text-xs text-muted">Também temos</p>
-            <p className="text-sm font-semibold text-cream">Barão Kids</p>
-          </div>
-        </motion.div>
-      </div>
+      <motion.a
+        href="#servicos"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="tap-target absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.18em] text-cream/70 hover:text-cream sm:flex"
+      >
+        Descer
+        <span className="relative h-8 w-px overflow-hidden bg-cream/30">
+          <motion.span
+            className="absolute inset-x-0 top-0 h-3 bg-accent"
+            animate={{ y: [0, 20, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </span>
+      </motion.a>
     </section>
   );
 }

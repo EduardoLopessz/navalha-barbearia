@@ -10,8 +10,8 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
-            <p className="text-sm font-semibold tracking-[0.12em] text-cream">
-              {business.name.toUpperCase()}
+            <p className="font-serif-display text-lg font-semibold text-cream">
+              {business.name}
             </p>
             <p className="pretty mt-3 max-w-[260px] text-sm text-muted">
               {business.tagline}
@@ -27,14 +27,14 @@ export function Footer() {
               rel="noopener noreferrer"
               className="tap-target flex items-start gap-2 hover:text-cream"
             >
-              <MapPin size={18} className="mt-0.5 shrink-0 text-gold" />
+              <MapPin size={18} className="mt-0.5 shrink-0 text-accent" />
               {business.address}
             </a>
             <a
               href={`tel:+${business.phoneWhatsapp}`}
               className="tap-target flex items-center gap-2 hover:text-cream"
             >
-              <Phone size={18} className="shrink-0 text-gold" />
+              <Phone size={18} className="shrink-0 text-accent" />
               {business.phoneDisplay}
             </a>
             <a
@@ -43,7 +43,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="tap-target flex items-center gap-2 hover:text-cream"
             >
-              <InstagramLogo size={18} className="shrink-0 text-gold" />
+              <InstagramLogo size={18} className="shrink-0 text-accent" />
               {business.instagram}
             </a>
           </div>

@@ -1,75 +1,61 @@
-import {
-  Drop,
-  Eye,
-  PaintBrush,
-  Scissors,
-  Sparkle,
-  Wind,
-} from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TiltCard } from "@/components/ui/TiltCard";
 import { services } from "@/lib/data";
-import type { Service } from "@/types";
 import { formatDuration, formatPrice } from "@/lib/utils";
-
-const ICONS: Record<Service["icon"], typeof Scissors> = {
-  scissors: Scissors,
-  razor: Wind,
-  towel: Drop,
-  fade: Sparkle,
-  eyebrow: Eye,
-  pigment: PaintBrush,
-};
 
 export function Services() {
   return (
-    <section id="servicos" className="bg-surface py-20 sm:py-28">
+    <section id="servicos" className="bg-sage py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Serviços e preços"
           title="Cada corte tem um preço justo e um tempo certo"
           description="Sem surpresa na hora de pagar. O valor e a duração aparecem antes de você escolher o horário."
+          tone="sage"
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = ICONS[service.icon];
-            return (
-              <Reveal key={service.id}>
-                <TiltCard className="hover-lift h-full rounded-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                  <div className="flex h-full flex-col rounded-2xl border border-border-subtle bg-surface-2 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 text-gold">
-                      <Icon size={22} weight="bold" />
+          {services.map((service, i) => (
+            <Reveal key={service.id} delay={i * 0.05}>
+              <Link
+                href={`/agendar?servico=${service.id}`}
+                className="hover-lift group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-2xl border border-white/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+              >
+                <Image
+                  src={service.photo}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="photo-treated object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
+
+                <div className="relative flex flex-col gap-2 p-6">
+                  <h3 className="font-serif-display text-xl font-semibold text-cream">
+                    {service.name}
+                  </h3>
+                  <p className="pretty text-sm text-cream/75">{service.description}</p>
+                  <div className="mt-2 flex items-center justify-between border-t border-white/15 pt-3">
+                    <div>
+                      <p className="font-mono text-lg font-semibold text-cream">
+                        {formatPrice(service.price)}
+                      </p>
+                      <p className="text-xs text-cream/60">
+                        {formatDuration(service.durationMinutes)}
+                      </p>
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold text-cream">
-                      {service.name}
-                    </h3>
-                    <p className="pretty mt-2 flex-1 text-sm text-muted">
-                      {service.description}
-                    </p>
-                    <div className="mt-6 flex items-end justify-between border-t border-border-subtle pt-4">
-                      <div>
-                        <p className="font-mono text-xl font-semibold text-cream">
-                          {formatPrice(service.price)}
-                        </p>
-                        <p className="text-xs text-muted">
-                          {formatDuration(service.durationMinutes)}
-                        </p>
-                      </div>
-                      <Link
-                        href={`/agendar?servico=${service.id}`}
-                        className="tap-target text-sm font-semibold text-gold hover:text-gold-strong"
-                      >
-                        Agendar →
-                      </Link>
-                    </div>
+                    <span className="flex items-center gap-1 text-sm font-semibold text-accent">
+                      Agendar
+                      <ArrowRight size={16} />
+                    </span>
                   </div>
-                </TiltCard>
-              </Reveal>
-            );
-          })}
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

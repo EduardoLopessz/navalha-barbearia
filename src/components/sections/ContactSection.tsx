@@ -13,30 +13,34 @@ export function ContactSection() {
   );
 
   return (
-    <section id="contato" className="bg-ink py-20 sm:py-28">
+    <section id="contato" className="bg-sage py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading eyebrow="Contato" title="Vem tomar um café e cortar o cabelo" />
+        <SectionHeading
+          eyebrow="Onde estamos"
+          title="Vem tomar um café e cortar o cabelo"
+          tone="sage"
+        />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           <Reveal className="flex flex-col gap-6">
-            <div className="flex flex-col gap-4 rounded-2xl border border-border-subtle bg-surface-2 p-6">
+            <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-sage-2 p-6">
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                   business.addressMapsQuery
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target flex items-start gap-3 hover:text-gold"
+                className="tap-target flex items-start gap-3 hover:text-accent"
               >
-                <MapPin size={22} className="mt-0.5 shrink-0 text-gold" />
+                <MapPin size={22} className="mt-0.5 shrink-0 text-accent" />
                 <span className="text-sm text-cream">{business.address}</span>
               </a>
 
               <a
                 href={`tel:+${business.phoneWhatsapp}`}
-                className="tap-target flex items-center gap-3 hover:text-gold"
+                className="tap-target flex items-center gap-3 hover:text-accent"
               >
-                <Phone size={22} className="shrink-0 text-gold" />
+                <Phone size={22} className="shrink-0 text-accent" />
                 <span className="text-sm text-cream">{business.phoneDisplay}</span>
               </a>
 
@@ -44,18 +48,18 @@ export function ContactSection() {
                 href={business.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target flex items-center gap-3 hover:text-gold"
+                className="tap-target flex items-center gap-3 hover:text-accent"
               >
-                <InstagramLogo size={22} className="shrink-0 text-gold" />
+                <InstagramLogo size={22} className="shrink-0 text-accent" />
                 <span className="text-sm text-cream">{business.instagram}</span>
               </a>
 
               <div className="flex items-start gap-3">
-                <Clock size={22} className="mt-0.5 shrink-0 text-gold" />
+                <Clock size={22} className="mt-0.5 shrink-0 text-accent" />
                 <div className="flex flex-col gap-1 text-sm">
                   {business.hours.map((h) => (
                     <div key={h.label} className="flex gap-2">
-                      <span className="text-muted">{h.label}:</span>
+                      <span className="text-sage-muted">{h.label}:</span>
                       <span className="text-cream">{h.value}</span>
                     </div>
                   ))}
@@ -75,7 +79,7 @@ export function ContactSection() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="h-full min-h-[320px] overflow-hidden rounded-2xl border border-border-subtle">
+            <div className="h-full min-h-[320px] overflow-hidden rounded-2xl border border-white/10">
               <iframe
                 title={`Mapa até a ${business.name}`}
                 src={mapSrc}

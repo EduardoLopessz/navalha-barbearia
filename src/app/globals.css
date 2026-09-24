@@ -8,12 +8,16 @@
   --color-border-subtle: #272727;
   --color-elevated: #313131;
 
-  --color-gold: #c9a24b;
-  --color-gold-strong: #e0b85c;
+  --color-accent: #d9835a;
+  --color-accent-strong: #e5976f;
   --color-cream: #f4efe6;
   --color-muted: #a9a297;
   --color-danger: #ff6b6b;
   --color-success: #4caf6e;
+
+  --color-sage: #24352c;
+  --color-sage-2: #2c4034;
+  --color-sage-muted: #b7c4ba;
 }
 
 @theme inline {
@@ -23,15 +27,19 @@
   --color-surface-3: var(--color-surface-3);
   --color-border-subtle: var(--color-border-subtle);
   --color-elevated: var(--color-elevated);
-  --color-gold: var(--color-gold);
-  --color-gold-strong: var(--color-gold-strong);
+  --color-accent: var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
   --color-cream: var(--color-cream);
   --color-muted: var(--color-muted);
   --color-danger: var(--color-danger);
   --color-success: var(--color-success);
+  --color-sage: var(--color-sage);
+  --color-sage-2: var(--color-sage-2);
+  --color-sage-muted: var(--color-sage-muted);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif-display: var(--font-serif-display);
 
   --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -89,12 +97,12 @@ a,
 }
 
 ::selection {
-  background: var(--color-gold);
+  background: var(--color-accent);
   color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -155,31 +163,6 @@ a,
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Feixe de luz suave atrás do hero, inspirado no efeito "spotlight" da Aceternity UI. */
-.spotlight {
-  position: absolute;
-  border-radius: 9999px;
-  background: radial-gradient(closest-side, color-mix(in oklab, var(--color-gold) 55%, transparent), transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-}
-
-@keyframes spotlight-drift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(3%, -4%) scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .spotlight {
-    animation: spotlight-drift 12s ease-in-out infinite;
-  }
-}
-
 /* Brilho que percorre a borda do botão principal, inspirado no "moving border" da Aceternity UI. */
 .shine-sweep {
   position: relative;
@@ -202,6 +185,6 @@ a,
 }
 
 .glow-ring {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-gold) 60%, transparent),
-    0 0 24px 0 color-mix(in oklab, var(--color-gold) 35%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-accent) 60%, transparent),
+    0 0 24px 0 color-mix(in oklab, var(--color-accent) 35%, transparent);
 }

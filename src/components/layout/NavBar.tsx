@@ -90,10 +90,10 @@ export function NavBar() {
         <div className="mt-6 flex w-max items-center gap-6 rounded-full border border-border-subtle bg-surface-2/80 py-2 pl-4 pr-2 backdrop-blur-xl">
           <Link
             href="/"
-            className="tap-target text-sm font-semibold tracking-[0.12em] text-cream"
+            className="font-serif-display tap-target text-base font-semibold tracking-[0.06em] text-cream"
             onClick={() => setOpen(false)}
           >
-            {business.shortName.toUpperCase()}
+            {business.shortName}
           </Link>
 
           <nav aria-label="Navegação principal" className="hidden items-center gap-5 md:flex">
@@ -110,7 +110,7 @@ export function NavBar() {
 
           <Link
             href="/agendar"
-            className="tap-target hidden rounded-full bg-gold px-3 py-2 text-sm font-semibold text-ink transition-transform duration-300 active:scale-[0.96] md:inline-block"
+            className="tap-target hidden rounded-full border border-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent transition-colors duration-300 hover:bg-accent hover:text-ink active:scale-[0.96] md:inline-block"
           >
             Agendar
           </Link>
@@ -158,7 +158,7 @@ export function NavBar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="tap-target text-2xl font-semibold text-cream"
+                  className="font-serif-display tap-target text-2xl font-semibold text-cream"
                   initial={{ opacity: 0, y: 48 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -182,7 +182,7 @@ export function NavBar() {
                 <Link
                   href="/agendar"
                   onClick={() => setOpen(false)}
-                  className="tap-target mt-2 inline-block rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink"
+                  className="tap-target mt-2 inline-block rounded-full bg-accent px-6 py-3 text-base font-semibold text-ink"
                 >
                   Agendar horário
                 </Link>

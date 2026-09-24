@@ -11,7 +11,7 @@ export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(faqItems[0].id);
 
   return (
-    <section id="faq" className="bg-surface py-20 sm:py-28">
+    <section id="faq" className="bg-ink py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Perguntas frequentes"
@@ -41,7 +41,7 @@ export function FAQ() {
                       size={18}
                       className={cn(
                         "shrink-0 text-muted transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
-                        isOpen && "rotate-180 text-gold"
+                        isOpen && "rotate-180 text-accent"
                       )}
                     />
                   </button>

@@ -5,6 +5,7 @@ export type Service = {
   price: number;
   durationMinutes: number;
   icon: "scissors" | "razor" | "towel" | "fade" | "eyebrow" | "pigment";
+  photo: string;
 };
 
 export type Barber = {
@@ -18,14 +19,6 @@ export type Barber = {
   workDays: number[]; // 0 = domingo ... 6 = sábado
   startHour: number; // 24h, ex: 9
   endHour: number; // 24h, ex: 20
-};
-
-export type Testimonial = {
-  id: string;
-  name: string;
-  service: string;
-  quote: string;
-  rating: number;
 };
 
 export type FaqItem = {

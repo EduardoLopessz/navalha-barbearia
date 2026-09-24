@@ -279,7 +279,7 @@ export function BookingWizard() {
                     className={cn(
                       "tap-target flex cursor-pointer items-center justify-between gap-4 rounded-2xl border p-4 transition-colors duration-300",
                       serviceId === s.id
-                        ? "glow-ring border-gold bg-surface-3"
+                        ? "glow-ring border-accent bg-surface-3"
                         : "border-border-subtle bg-surface-2 hover:bg-surface-3"
                     )}
                   >
@@ -300,7 +300,7 @@ export function BookingWizard() {
                         {formatDuration(s.durationMinutes)}
                       </p>
                     </div>
-                    <p className="font-mono text-sm font-semibold text-gold">
+                    <p className="font-mono text-sm font-semibold text-accent">
                       {formatPrice(s.price)}
                     </p>
                   </label>
@@ -329,7 +329,7 @@ export function BookingWizard() {
                     className={cn(
                       "tap-target flex cursor-pointer items-center gap-4 rounded-2xl border p-4 transition-colors duration-300",
                       barberId === b.id
-                        ? "glow-ring border-gold bg-surface-3"
+                        ? "glow-ring border-accent bg-surface-3"
                         : "border-border-subtle bg-surface-2 hover:bg-surface-3"
                     )}
                   >
@@ -376,7 +376,7 @@ export function BookingWizard() {
                     <button
                       type="button"
                       onClick={() => setShowCustomDate((v) => !v)}
-                      className="tap-target text-xs font-semibold text-gold hover:text-gold-strong"
+                      className="tap-target text-xs font-semibold text-accent hover:text-accent-strong"
                     >
                       {showCustomDate ? "Usar tira de datas" : "Escolher outra data"}
                     </button>
@@ -414,7 +414,7 @@ export function BookingWizard() {
                             className={cn(
                               "tap-target flex shrink-0 snap-start flex-col items-center gap-1 rounded-2xl border px-3.5 py-2.5 transition-colors duration-300",
                               selected
-                                ? "glow-ring border-gold bg-gold text-ink"
+                                ? "glow-ring border-accent bg-accent text-ink"
                                 : "border-border-subtle bg-surface-2 text-cream hover:bg-surface-3",
                               closed && "pointer-events-none opacity-30"
                             )}
@@ -487,7 +487,7 @@ export function BookingWizard() {
                                         className={cn(
                                           "tap-target rounded-xl border px-3 py-2 text-sm font-medium transition-colors duration-300",
                                           time === slot
-                                            ? "glow-ring border-gold bg-gold text-ink"
+                                            ? "glow-ring border-accent bg-accent text-ink"
                                             : "border-border-subtle bg-surface-2 text-cream hover:bg-surface-3"
                                         )}
                                       >
@@ -631,7 +631,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={goNext}
-              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
+              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             >
               Continuar
             </button>
@@ -639,7 +639,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={handleConfirm}
-              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
+              className="shine-sweep tap-target flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             >
               <CalendarCheck size={20} weight="bold" />
               Confirmar pelo WhatsApp

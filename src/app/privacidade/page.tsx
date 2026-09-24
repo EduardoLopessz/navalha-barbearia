@@ -34,7 +34,7 @@ export default function PrivacidadePage() {
         </p>
         <p>
           Dúvidas sobre seus dados podem ser enviadas para{" "}
-          <a href={`mailto:${business.email}`} className="text-gold hover:underline">
+          <a href={`mailto:${business.email}`} className="text-accent hover:underline">
             {business.email}
           </a>
           .

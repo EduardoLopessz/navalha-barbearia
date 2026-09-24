@@ -10,7 +10,7 @@ export function StepIndicator({ step }: { step: number }) {
     <div className="relative">
       <div className="absolute left-[10%] right-[10%] top-3.5 h-0.5 -translate-y-1/2 bg-border-subtle">
         <motion.div
-          className="h-full bg-gold"
+          className="h-full bg-accent"
           initial={false}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
@@ -35,8 +35,8 @@ export function StepIndicator({ step }: { step: number }) {
                 aria-hidden="true"
                 className={cn(
                   "flex h-7 w-7 items-center justify-center rounded-full bg-ink text-xs font-semibold transition-colors duration-300",
-                  isDone && "bg-gold text-ink",
-                  isCurrent && "border-2 border-gold text-gold",
+                  isDone && "bg-accent text-ink",
+                  isCurrent && "border-2 border-accent text-accent",
                   !isDone && !isCurrent && "border border-border-subtle text-muted"
                 )}
               >

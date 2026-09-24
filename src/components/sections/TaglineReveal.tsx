@@ -14,7 +14,7 @@ export function TaglineReveal() {
     <section className="bg-ink py-20 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <motion.p
-          className="pretty text-3xl font-semibold leading-snug sm:text-5xl sm:leading-tight"
+          className="font-serif-display pretty text-3xl font-semibold leading-snug sm:text-5xl sm:leading-tight"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}

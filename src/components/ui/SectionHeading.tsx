@@ -5,12 +5,14 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  tone = "dark",
   className,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
+  tone?: "dark" | "sage";
   className?: string;
 }) {
   return (
@@ -22,15 +24,28 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-gold">
-          {eyebrow}
-        </p>
+        <div
+          className={cn(
+            "mb-3 flex items-center gap-3",
+            align === "center" && "justify-center"
+          )}
+        >
+          <span aria-hidden="true" className="h-px w-8 bg-accent" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            {eyebrow}
+          </p>
+        </div>
       ) : null}
-      <h2 className="heading-gradient balance text-3xl font-semibold sm:text-4xl">
+      <h2 className="font-serif-display heading-gradient balance text-3xl font-semibold sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="pretty mt-3 text-base text-muted sm:text-lg">
+        <p
+          className={cn(
+            "pretty mt-3 text-base sm:text-lg",
+            tone === "sage" ? "text-sage-muted" : "text-muted"
+          )}
+        >
           {description}
         </p>
       ) : null}

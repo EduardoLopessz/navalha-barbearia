@@ -40,10 +40,12 @@ export function HowItWorks() {
                 <span className="font-mono text-sm text-muted">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="mt-4 flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 text-gold">
+                <div className="mt-4 flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 text-accent">
                   <step.icon size={22} weight="bold" />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-cream">{step.title}</h3>
+                <h3 className="font-serif-display mt-4 text-lg font-semibold text-cream">
+                  {step.title}
+                </h3>
                 <p className="pretty mt-2 text-sm text-muted">{step.description}</p>
               </div>
             </Reveal>

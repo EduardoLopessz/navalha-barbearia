@@ -33,6 +33,7 @@ export const services: Service[] = [
     price: 45,
     durationMinutes: 40,
     icon: "scissors",
+    photo: "/images/barao/gallery-detalhe-maquina.jpg",
   },
   {
     id: "corte-barba",
@@ -41,6 +42,7 @@ export const services: Service[] = [
     price: 70,
     durationMinutes: 65,
     icon: "razor",
+    photo: "/images/barao/gallery-barba-quente.jpg",
   },
   {
     id: "barba-terapia",
@@ -49,6 +51,7 @@ export const services: Service[] = [
     price: 35,
     durationMinutes: 30,
     icon: "towel",
+    photo: "/images/barao/gallery-acabamento-navalha.jpg",
   },
   {
     id: "degrade-navalhado",
@@ -57,6 +60,7 @@ export const services: Service[] = [
     price: 50,
     durationMinutes: 45,
     icon: "fade",
+    photo: "/images/barao/gallery-espelho.jpg",
   },
   {
     id: "corte-infantil",
@@ -65,6 +69,7 @@ export const services: Service[] = [
     price: 40,
     durationMinutes: 35,
     icon: "eyebrow",
+    photo: "/images/barao/gallery-barao-kids.jpg",
   },
   {
     id: "sobrancelha",
@@ -73,6 +78,7 @@ export const services: Service[] = [
     price: 20,
     durationMinutes: 15,
     icon: "pigment",
+    photo: "/images/barao/gallery-kids-carrinho.jpg",
   },
 ];
 
